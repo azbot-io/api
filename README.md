@@ -1,10 +1,13 @@
-#API AZBOT.IO
+
+# API AZBOT.IO
 
 Link Api -> https://azbot.io:3020
 
-A api é 100% feita com o socket.io Essa api está disponivel para varias linguagems mas como exemplo usaremos o JavaScript (NodeJs)
-Exemplo basico de conexão
+A api é 100% feita com o [socket.io](https://socket.io/)
+Essa api está disponivel para varias linguagems mas como exemplo usaremos o JavaScript (NodeJs)
 
+## Exemplo basico de conexão
+```
 var socket = io('https://azbot.io:3020', {
     query : {
         token : "<Seu Token>"
@@ -14,33 +17,33 @@ var socket = io('https://azbot.io:3020', {
 socket.on('connect', function(){
     console.log('Conectado')
 })
-
-Exemplo desconexão
-
-Caso aja alguma desconexão de sua internet ou de nosso servidor, essa função é chamada Caso a conexão seja reestabelecida, a função connect (Logo acima) é chamada
-
+```
+## Exemplo desconexão
+Caso aja alguma desconexão de sua internet ou de nosso servidor, essa função é chamada
+Caso a conexão seja reestabelecida, a função connect (Logo acima) é chamada
+```
 socket.on('disconnect', function(){
   console.log('Disconnectado')
 });
+```
 
-Exemplo Log de erros
-
+## Exemplo Log de erros
 Sempre que acontece qualquer problema a função log é chamada informando o tipo de problema
-
+```
 socket.on('log', function(data){
     console.log(data)
 });
+```
 
-Exemplo receber mensagem
-
+## Exemplo receber mensagem
 Sempre que o canal receber uma mensagem, essa função é chamada, Junto com ela vem um json com todas as informações, abaixo um exemplo do json.
-
+```
 socket.on('ApiReceiveMsg', function(data){
   console.log(data)
 })
-
-Json exemplo text
-
+```
+###### Json exemplo text
+```
 {
   "type": "chat",
   "sender": {
@@ -58,9 +61,10 @@ Json exemplo text
     "msg": "Olá Mundo"
   }
 }
+```
 
-Exemplo recebimento de midia
-
+###### Exemplo recebimento de midia
+```
 {
   "type": "image",
   "sender": {
@@ -80,11 +84,12 @@ Exemplo recebimento de midia
     "mime": "image/jpeg" 
   }
 }
+```
 
-Exemplo envio de Mensagem
-
-Exemplo com o envio de mensagem, você deve enviar a mensagem de acordo com os parametros abaixo dentro de data A função retorna um true em caso de envio com sucesso
-
+## Exemplo envio de Mensagem
+Exemplo com o envio de mensagem, você deve enviar a mensagem de acordo com os parametros abaixo dentro de **data**
+A função retorna um true em caso de envio com sucesso
+```
 let data = {
   "number": "5521912345678",
   "type": "text",
@@ -95,3 +100,4 @@ socket.emit('ApiSendMsg', data , function(data){
     console.log('Sucesso')           
     console.log(data)
 });
+```
