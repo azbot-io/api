@@ -1,7 +1,7 @@
 
 # API AZBOT.IO
 
-Link Api -> https://azbot.io:3020
+EndPoint da Api -> https://azbot.io:3020
 
 A api é 100% feita com o [socket.io](https://socket.io/)
 Essa api está disponivel para varias linguagems mas como exemplo usaremos o JavaScript (NodeJs)
